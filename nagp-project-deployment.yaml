@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: nagp
+spec:
+ strategy:
+  type: RollingUpdate
+ replicas: 4
+ selector:
+   matchLabels:
+    app: nagp
+ template:
+   metadata:
+    name: nagp-pod
+    labels:
+     app: nagp
+   spec:
+     containers: 
+        - name: nagp-container
+          image: vpnkmr764/nagp
+          envFrom:                                  
+          - configMapRef:
+              name: config-map
+          env:
+          - name: spring.datasource.username         
+            valueFrom:
+              secretKeyRef:
+                name: mysql-credential
+                key:  username
+          - name: spring.datasource.password         
+            valueFrom:
+              secretKeyRef:
+                name: mysql-credential
+                key: password

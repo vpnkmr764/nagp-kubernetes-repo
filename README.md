@@ -102,4 +102,4 @@ Now run mysql -p command. It will ask password to connect with db. Then run belo
 
 11) Now hit required API from postman to verify results.
 
-    http://<external ip of load balancer>:31063/getOrdersByUser/3020
+    http://<externalipofloadbalancer>:31063/getOrdersByUser/3020
